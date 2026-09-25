@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ТутСервис — заявки и услуги в Чебоксарах</title>
+<meta name="description" content="ТутСервис — площадка, где клиенты размещают заявки со своей ценой, а частные исполнители и организации выбирают подходящие заказы.">
+<style>
+:root{--p:#6d4aff;--p2:#8b68ff;--g:#08b996;--pink:#ff4d87;--ink:#172033;--mut:#697386;--bg:#f6f7fc;--line:#e8eaf2;--card:#fff;--shadow:0 18px 55px #3d2a8a16}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial;color:var(--ink);background:var(--bg)}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:#ffffffed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:950;font-size:25px;letter-spacing:-1.2px}.logo i{font-style:normal;color:var(--p)}
+.navlinks{display:flex;gap:25px;font-size:14px;font-weight:750;color:#566074}.navlinks a:hover{color:var(--p)}
+.btn{border:0;border-radius:13px;padding:12px 17px;font-weight:850}.primary{color:white;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:0 9px 22px #6d4aff32}.soft{color:var(--p);background:#eeeaff}.green{color:white;background:linear-gradient(135deg,#00a985,#08cfac)}
+.hero{padding:65px 0 45px;background:radial-gradient(circle at 7% 12%,#e6deff,transparent 31%),radial-gradient(circle at 90% 10%,#d7fff5,transparent 30%),linear-gradient(135deg,#fff,#f6f7fc)}
+.heroGrid{display:grid;grid-template-columns:1.12fr .88fr;gap:45px;align-items:center}.tag{display:inline-block;background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:99px;font-size:13px;font-weight:850;color:var(--p)}
+h1{font-size:57px;line-height:1.02;letter-spacing:-3px;margin:18px 0}.accent{color:var(--p)}.lead{font-size:19px;line-height:1.55;color:var(--mut);max-width:650px}
+.search{display:flex;gap:0;background:#fff;border:1px solid var(--line);border-radius:18px;padding:7px;margin-top:27px;box-shadow:var(--shadow)}.search input{border:0;outline:0;flex:1;padding:13px}.search select{border:0;border-left:1px solid var(--line);outline:0;padding:0 12px;color:#5b6577}
+.preview{background:#fff;border-radius:28px;padding:18px;box-shadow:var(--shadow);transform:rotate(1deg)}.phead{display:flex;justify-content:space-between;align-items:center;padding:5px 4px 14px}.dot{width:9px;height:9px;background:#25c995;border-radius:50%;display:inline-block;margin-right:7px}.order{border:1px solid var(--line);border-radius:19px;padding:17px}.orderTop{display:flex;justify-content:space-between}.status{font-size:11px;font-weight:900;padding:6px 8px;border-radius:99px;background:#eafff7;color:#07866d}.money{font-size:22px;font-weight:950;color:var(--p)}
+.section{padding:58px 0}.section h2{font-size:34px;letter-spacing:-1px;margin:0 0 8px}.sub{color:var(--mut);margin:0 0 24px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cat{background:#fff;border:1px solid var(--line);padding:20px;border-radius:20px;transition:.2s}.cat:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.cat span{font-size:30px}.cat b{display:block;margin-top:11px}.cat small{color:var(--mut)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.step{background:#fff;border:1px solid var(--line);border-radius:22px;padding:23px}.num{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#eeeaff;color:var(--p);font-weight:950}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:18px}.role{color:#fff;border-radius:25px;padding:30px;min-height:245px}.r1{background:linear-gradient(135deg,#6844ed,#9b73ff)}.r2{background:linear-gradient(135deg,#009e82,#10d6b0)}
+.app{background:#161b2d;color:#fff;border-radius:27px;padding:28px}.dash{display:grid;grid-template-columns:220px 1fr;gap:20px}.side{background:#20263b;border-radius:18px;padding:14px}.side button{display:block;width:100%;text-align:left;background:transparent;color:#cbd1e0;border:0;border-radius:10px;padding:12px;margin:3px 0}.side button.active,.side button:hover{background:#303750;color:#fff}.panel{background:#fff;color:var(--ink);border-radius:18px;padding:22px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:#f7f7fb;border-radius:15px;padding:15px}.stat strong{font-size:23px;display:block}.requestList{display:grid;gap:10px;margin-top:16px}.req{border:1px solid var(--line);border-radius:15px;padding:15px;display:flex;justify-content:space-between;gap:10px;align-items:center}.req p{margin:5px 0 0;color:var(--mut);font-size:13px}
+footer{background:#111628;color:#aeb6ca;padding:35px 0}.foot{display:flex;justify-content:space-between}
+.modal{position:fixed;inset:0;background:#10142699;display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modal.show{display:flex}.modalbox{background:#fff;width:min(570px,100%);border-radius:24px;padding:27px;position:relative}.x{position:absolute;right:17px;top:15px;border:0;border-radius:50%;width:34px;height:34px}.field{width:100%;padding:12px;border:1px solid #dfe2ea;border-radius:11px;margin:6px 0 12px;outline:0}.field:focus{border-color:var(--p)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.toast{position:fixed;right:20px;bottom:20px;background:#161b2d;color:#fff;padding:14px 17px;border-radius:13px;display:none;z-index:80}
+@media(max-width:850px){.navlinks{display:none}.heroGrid,.roles,.dash{grid-template-columns:1fr}h1{font-size:44px}.cats{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.side{display:flex;overflow:auto}.side button{min-width:max-content}.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cats{grid-template-columns:1fr 1fr}.search{flex-direction:column}.search select{border:0;border-top:1px solid var(--line);padding:12px}.row{grid-template-columns:1fr}.foot{flex-direction:column;gap:15px}}
+</style>
+<style>
+.authTabs{display:flex;gap:7px;background:#f3f4f8;padding:5px;border-radius:12px;margin-bottom:15px}.authTabs button{flex:1;border:0;padding:10px;border-radius:9px;background:transparent;font-weight:800}.authTabs button.on{background:#fff;box-shadow:0 2px 8px #00000012;color:#6d4aff}
+.notice{background:#fff7df;border:1px solid #ffe3a0;border-radius:13px;padding:12px;font-size:13px;color:#765b00}
+.userbar{display:flex;align-items:center;gap:9px}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#eeeaff;color:#6d4aff;font-weight:900}
+.live{font-size:12px;color:#07866d;background:#eafff7;padding:5px 8px;border-radius:99px;font-weight:800}
+</style>
+
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#">Тут<i>Сервис</i></a>
+<nav class="navlinks"><a href="#services">Услуги</a><a href="#how">Как работает</a><a href="#cabinet">Кабинет</a><a href="#forworkers">Исполнителям</a></nav>
+<div id="accountArea"><button class="btn primary" onclick="openModal('login')">Войти</button></div>
+</div></header>
+
+<section class="hero"><div class="wrap heroGrid">
+<div><span class="tag">📍 Чебоксары • Чувашия</span>
+<h1>Нужна услуга?<br><span class="accent">Назови свою цену.</span></h1>
+<p class="lead">Размести задачу — частные специалисты и организации сами решат, подходит ли им заказ. Можно предложить свою цену или договориться о другой.</p>
+<div class="search"><input id="q" placeholder="Что нужно сделать? Например: убрать квартиру"><select id="city"><option>Чебоксары</option><option>Новочебоксарск</option><option>Вся Чувашия</option></select><button class="btn primary" onclick="find()">Найти</button></div>
+<div style="margin-top:14px;color:#70798a;font-size:13px">Популярное: уборка • ремонт • перевозки • электрика • IT • красота</div></div>
+<div class="preview"><div class="phead"><b>ТутСервис</b><span><span class="dot"></span>онлайн</span></div>
+<div class="order"><div class="orderTop"><b>🧹 Уборка квартиры</b><span class="status">НОВАЯ</span></div><p style="color:var(--mut)">2-комнатная квартира, сегодня после 18:00</p><div style="display:flex;justify-content:space-between"><span>📍 Чебоксары</span><span class="money">2 500 ₽</span></div><small style="color:var(--mut)">Цена клиента • 4 отклика</small></div>
+<div style="display:flex;gap:9px;margin-top:12px"><button class="btn primary" style="flex:1" onclick="openModal('request')">Создать заявку</button><button class="btn soft" onclick="openModal('worker')">Я исполнитель</button></div></div>
+</div></section>
+
+<section class="section" id="services"><div class="wrap"><h2>Услуги</h2><p class="sub">Основные категории для запуска площадки</p><div class="cats">
+<div class="cat" onclick="pick('Ремонт и строительство')">🔨<b>Ремонт</b><small>Отделка, сборка, монтаж</small></div>
+<div class="cat" onclick="pick('Уборка')">🧹<b>Уборка</b><small>Дом, квартира, офис</small></div>
+<div class="cat" onclick="pick('Перевозки и доставка')">🚚<b>Перевозки</b><small>Грузчики, доставка</small></div>
+<div class="cat" onclick="pick('Электрика')">⚡<b>Электрика</b><small>Монтаж и ремонт</small></div>
+<div class="cat" onclick="pick('Сантехника')">🚿<b>Сантехника</b><small>Установка и ремонт</small></div>
+<div class="cat" onclick="pick('Автоуслуги')">🚗<b>Авто</b><small>Помощь и ремонт</small></div>
+<div class="cat" onclick="pick('IT и компьютеры')">💻<b>IT</b><small>Компьютеры и сайты</small></div>
+<div class="cat" onclick="pick('Красота')">💇<b>Красота</b><small>Мастера и студии</small></div>
+</div></div></section>
+
+<section class="section" id="how"><div class="wrap"><h2>Как работает модель</h2><p class="sub">Сделано вокруг свободного выбора обеих сторон</p><div class="steps">
+<div class="step"><div class="num">1</div><h3>Клиент создаёт заявку</h3><p class="sub">Описание, адрес, сроки и желаемая цена.</p></div>
+<div class="step"><div class="num">2</div><h3>Исполнители выбирают</h3><p class="sub">Частник или организация решает, подходит ли заказ.</p></div>
+<div class="step"><div class="num">3</div><h3>Цена согласовывается</h3><p class="sub">Исполнитель может принять цену или отправить своё предложение.</p></div>
+</div></div></section>
+
+<section class="section" id="forworkers"><div class="wrap"><div class="roles">
+<div class="role r1"><h2>👤 Частный исполнитель</h2><p>Профиль, категории, район работы, портфолио, рейтинг и список заказов.</p><button class="btn" style="background:#fff;color:#6743ed" onclick="openModal('worker')">Создать профиль</button></div>
+<div class="role r2"><h2>🏢 Организация</h2><p>Страница компании, сотрудники, услуги, документы, портфолио, отзывы и заявки.</p><button class="btn" style="background:#fff;color:#008d74" onclick="openModal('company')">Добавить организацию</button></div>
+</div></div></section>
+
+<section class="section" id="cabinet"><div class="wrap"><div class="app"><h2 style="margin-top:0">Личный кабинет — концепция</h2><p style="color:#b7bfd1">В будущем здесь будут реальные аккаунты, заявки и сообщения. Сейчас работает демонстрация интерфейса.</p>
+<div class="dash"><aside class="side"><button class="active" onclick="tab('orders',this)">📋 Мои заявки</button><button onclick="tab('offers',this)">💬 Отклики</button><button onclick="tab('profile',this)">👤 Профиль</button><button onclick="tab('chat',this)">💬 Чаты</button></aside>
+<div class="panel" id="dashPanel"><div class="stats"><div class="stat"><span>Активные заявки</span><strong>3</strong></div><div class="stat"><span>Отклики</span><strong>12</strong></div><div class="stat"><span>Завершено</span><strong>8</strong></div></div><div class="requestList"><div class="req"><div><b>Сборка мебели</b><p>2 000 ₽ • Чебоксары • сегодня</p></div><button class="btn soft" onclick="notify('Открыта заявка')">Открыть</button></div><div class="req"><div><b>Уборка квартиры</b><p>2 500 ₽ • 4 отклика</p></div><button class="btn soft" onclick="notify('Открыта заявка')">Открыть</button></div></div></div>
+</div></div></div></section>
+
+<section class="section"><div class="wrap"><div style="background:#fff;border:1px solid var(--line);border-radius:25px;padding:27px"><h2>Создать заявку</h2><p class="sub">Демо-форма. В реальной версии данные будут сохраняться в базе.</p><div class="row"><div><label>Услуга</label><input id="title" class="field" placeholder="Например: починить кран"></div><div><label>Цена клиента, ₽</label><input id="price" class="field" type="number" placeholder="1500"></div></div><label>Описание</label><textarea id="desc" class="field" rows="4" placeholder="Опишите задачу, сроки и пожелания"></textarea><div class="row"><input class="field" placeholder="Район / адрес"><select class="field"><option>Сегодня</option><option>Завтра</option><option>На этой неделе</option></select></div><button class="btn primary" onclick="createOrderReal()">Опубликовать заявку</button></div></div></section>
+
+<footer><div class="wrap foot"><div><b style="font-size:21px;color:#fff">ТутСервис</b><div>Площадка услуг для Чебоксар и Чувашии</div></div><div>Демо-версия • 2026</div></div></footer>
+
+<div class="modal" id="modal"><div class="modalbox"><button class="x" onclick="closeModal()">×</button><div id="mc"></div></div></div><div class="toast" id="toast"></div>
+
+<script>
+const DBKEY='tutservice_demo_v3';
+function loadDB(){
+ try{return JSON.parse(localStorage.getItem(DBKEY))||{users:[],orders:[],messages:[],current:null}}catch(e){return{users:[],orders:[],messages:[],current:null}}
+}
+function saveDB(db){localStorage.setItem(DBKEY,JSON.stringify(db))}
+let db=loadDB();
+
+function currentUser(){return db.users.find(u=>u.id===db.current)||null}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+
+function refreshAccount(){
+ const a=document.getElementById('accountArea'),u=currentUser();
+ if(!u){a.innerHTML='<button class="btn primary" onclick="openModal(\\'login\\')">Войти</button>';return}
+ a.innerHTML='<div class="userbar"><span class="avatar">'+esc(u.name[0]||'U')+'</span><span style="font-size:13px;font-weight:800">'+esc(u.name)+'</span><button class="btn soft" onclick="logout()">Выйти</button></div>';
+}
+function registerForm(){
+ document.getElementById('mc').innerHTML=`
+ <h2>Создать аккаунт</h2><div class="authTabs"><button class="on">Клиент</button><button onclick="notify('Выберите тип аккаунта после регистрации')">Исполнитель</button></div>
+ <input id="regName" class="field" placeholder="Имя или название">
+ <input id="regPhone" class="field" placeholder="Телефон или e-mail">
+ <select id="regRole" class="field"><option value="client">Клиент</option><option value="worker">Частный исполнитель</option><option value="company">Организация</option></select>
+ <div class="notice">Для реального запуска регистрация будет подтверждаться по телефону/e-mail. Для некоторых категорий потребуются документы или лицензии.</div>
+ <button class="btn primary" style="width:100%;margin-top:12px" onclick="register()">Зарегистрироваться</button>`;
+}
+function loginForm(){
+ document.getElementById('mc').innerHTML=`
+ <h2>Вход</h2><input id="loginPhone" class="field" placeholder="Телефон или e-mail">
+ <input id="loginName" class="field" placeholder="Имя (для демо-входа)">
+ <button class="btn primary" style="width:100%" onclick="login()">Войти</button>
+ <p style="font-size:13px;color:var(--mut)">Нет аккаунта? <a href="#" onclick="registerForm();return false" style="color:var(--p);font-weight:800">Зарегистрироваться</a></p>
+ <div class="notice">Это локальная демонстрация: данные сохраняются только в браузере на этом устройстве.</div>`;
+}
+function register(){
+ const name=document.getElementById('regName').value.trim(),phone=document.getElementById('regPhone').value.trim(),role=document.getElementById('regRole').value;
+ if(!name||!phone){notify('Заполните имя и контакт');return}
+ if(db.users.some(u=>u.phone===phone)){notify('Такой аккаунт уже есть');return}
+ const u={id:uid(),name,phone,role,city:'Чебоксары',rating:5,created:Date.now()};
+ db.users.push(u);db.current=u.id;saveDB(db);closeModal();refreshAccount();renderDashboard();notify('Аккаунт создан');
+}
+function login(){
+ const phone=document.getElementById('loginPhone').value.trim(),name=document.getElementById('loginName').value.trim();
+ let u=db.users.find(x=>x.phone===phone);
+ if(!u&&name){u={id:uid(),name,phone:phone||('demo-'+uid()),role:'client',city:'Чебоксары',rating:5,created:Date.now()};db.users.push(u)}
+ if(!u){notify('Введите данные для демо-входа');return}
+ db.current=u.id;saveDB(db);closeModal();refreshAccount();renderDashboard();notify('Вы вошли в аккаунт');
+}
+function logout(){db.current=null;saveDB(db);refreshAccount();renderDashboard();notify('Вы вышли из аккаунта')}
+function openRequestModal(){
+ if(!currentUser()){openModal('login');return}
+ openModal('request')
+}
+function createOrderReal(){
+ const u=currentUser(); if(!u){openModal('login');return}
+ const title=(document.getElementById('title')?.value||'').trim(), price=Number(document.getElementById('price')?.value||0), desc=(document.getElementById('desc')?.value||'').trim();
+ if(!title){notify('Укажите услугу');return}
+ db.orders.push({id:uid(),clientId:u.id,title,price,desc,city:'Чебоксары',status:'open',offers:[],created:Date.now()});
+ saveDB(db);renderDashboard();notify('Заявка опубликована');document.getElementById('title').value='';document.getElementById('price').value='';document.getElementById('desc').value='';
+}
+function workerOffer(orderId){
+ const u=currentUser(); if(!u){openModal('login');return}
+ if(u.role==='client'){notify('Для отклика нужен аккаунт исполнителя');return}
+ const o=db.orders.find(x=>x.id===orderId);if(!o)return;
+ if(o.offers.some(x=>x.workerId===u.id)){notify('Вы уже откликнулись');return}
+ const p=prompt('Ваша цена, ₽',o.price||'');
+ if(p===null)return; const price=Number(p);if(!price){notify('Введите цену');return}
+ o.offers.push({id:uid(),workerId:u.id,workerName:u.name,price});
+ saveDB(db);renderDashboard();notify('Отклик отправлен');
+}
+function acceptOffer(orderId,offerId){
+ const u=currentUser();const o=db.orders.find(x=>x.id===orderId);if(!o||o.clientId!==u?.id)return;
+ const off=o.offers.find(x=>x.id===offerId);if(!off)return;
+ o.status='assigned';o.workerId=off.workerId;o.finalPrice=off.price;
+ saveDB(db);renderDashboard();notify('Исполнитель выбран');
+}
+function sendMessage(orderId,toId){
+ const u=currentUser();if(!u){openModal('login');return}
+ const text=prompt('Сообщение:');if(!text)return;
+ db.messages.push({id:uid(),orderId,from:u.id,to:toId,text,created:Date.now()});saveDB(db);renderDashboard();notify('Сообщение отправлено');
+}
+function renderDashboard(){
+ const panel=document.getElementById('dashPanel');if(!panel)return;const u=currentUser();
+ if(!u){panel.innerHTML='<div class="notice">Войдите или зарегистрируйтесь, чтобы использовать личный кабинет.</div>';return}
+ let orders=db.orders.filter(o=>o.clientId===u.id);
+ let incoming=db.orders.filter(o=>o.status==='open'&&o.clientId!==u.id);
+ if(u.role!=='client'){
+   panel.innerHTML='<h3>Доступные заявки</h3><div class="requestList">'+(incoming.length?incoming.map(o=>`<div class="req"><div><b>${esc(o.title)}</b><p>${esc(o.desc||'Без описания')} • ${o.price?o.price+' ₽':'Цена не указана'} • ${esc(o.city)}</p></div><button class="btn primary" onclick="workerOffer('${o.id}')">Откликнуться</button></div>`).join(''):'<p style="color:var(--mut)">Подходящих заявок пока нет.</p>')+'</div>';
+ }else{
+   panel.innerHTML='<div class="stats"><div class="stat">Мои заявки<strong>'+orders.length+'</strong></div><div class="stat">Всего откликов<strong>'+orders.reduce((a,o)=>a+o.offers.length,0)+'</strong></div><div class="stat">В работе<strong>'+orders.filter(o=>o.status==='assigned').length+'</strong></div></div><div class="requestList">'+(orders.length?orders.map(o=>`<div class="req" style="display:block"><div style="display:flex;justify-content:space-between"><b>${esc(o.title)}</b><span class="live">${o.status==='assigned'?'ИСПОЛНИТЕЛЬ ВЫБРАН':'ОТКРЫТА'}</span></div><p>${o.price?o.price+' ₽':'Без цены'} • ${o.offers.length} откликов</p>${o.offers.map(x=>`<div style="margin-top:8px;padding:10px;background:#f7f7fb;border-radius:11px;display:flex;justify-content:space-between;align-items:center"><span><b>${esc(x.workerName)}</b> — ${x.price} ₽</span><span><button class="btn soft" onclick="acceptOffer('${o.id}','${x.id}')">Выбрать</button><button class="btn soft" onclick="sendMessage('${o.id}','${x.workerId}')">Чат</button></span></div>`).join('')}</div>`).join(''):'<p style="color:var(--mut)">Заявок пока нет. Создайте первую.</p>')+'</div>';
+ }
+}
+</script>
+
+<script>
+const modal=document.getElementById('modal');
+function openModal(type){let c=document.getElementById('mc');
+if(type==='request')c.innerHTML='<h2>Новая заявка</h2><p class="sub">Укажите задачу и сумму, которую готовы предложить.</p><input class="field" placeholder="Название услуги"><textarea class="field" rows="4" placeholder="Описание"></textarea><input class="field" type="number" placeholder="Ваша цена, ₽"><button class="btn primary" style="width:100%" onclick="notify(\'Заявка сохранена в демо-режиме\')">Опубликовать</button>';
+if(type==='worker')c.innerHTML='<h2>Стать исполнителем</h2><p class="sub">Как вы будете работать на площадке?</p><button class="btn soft" style="width:100%;margin:5px 0" onclick="notify(\'Выбран профиль частного исполнителя\')">👤 Частное лицо / специалист</button><button class="btn green" style="width:100%;margin:5px 0" onclick="notify(\'Выбран профиль организации\')">🏢 Организация / компания</button>';
+if(type==='company')c.innerHTML='<h2>Организация</h2><p class="sub">В реальной версии здесь будет создание страницы компании и загрузка подтверждающих документов.</p><input class="field" placeholder="Название организации"><input class="field" placeholder="ИНН / реквизиты"><button class="btn primary" onclick="notify(\'Профиль организации подготовлен\')">Продолжить</button>';
+if(type==='login')c.innerHTML='<h2>Вход</h2><input class="field" placeholder="Телефон или e-mail"><input class="field" type="password" placeholder="Пароль"><button class="btn primary" style="width:100%" onclick="notify(\'Вход в демо-кабинет\')">Войти</button><p style="color:var(--mut);font-size:13px">Для настоящего запуска подключим регистрацию, SMS/e-mail подтверждение и базу данных.</p>';
+modal.classList.add('show')}
+function closeModal(){modal.classList.remove('show')}
+modal.onclick=e=>{if(e.target===modal)closeModal()}
+function notify(t){closeModal();let x=document.getElementById('toast');x.textContent=t;x.style.display='block';setTimeout(()=>x.style.display='none',2700)}
+function pick(t){document.getElementById('q').value=t;window.scrollTo({top:0,behavior:'smooth'})}
+function find(){let q=document.getElementById('q').value.trim();notify(q?'Поиск: '+q:'Введите услугу')}
+function createOrder(){let t=document.getElementById('title').value,p=document.getElementById('price').value;if(!t){notify('Укажите услугу');return}notify('Заявка «'+t+'» создана на '+(p||'указанную')+' ₽')}
+function tab(t,b){document.querySelectorAll('.side button').forEach(x=>x.classList.remove('active'));b.classList.add('active');let p=document.getElementById('dashPanel');if(t==='orders')p.innerHTML='<div class="stats"><div class="stat">Активные<strong>3</strong></div><div class="stat">Отклики<strong>12</strong></div><div class="stat">Завершено<strong>8</strong></div></div><div class="requestList"><div class="req"><div><b>Сборка мебели</b><p>2 000 ₽ • сегодня</p></div><button class="btn soft">Открыть</button></div></div>';if(t==='offers')p.innerHTML='<h3>Отклики на ваши заявки</h3><div class="requestList"><div class="req"><div><b>Иван • рейтинг 4.9</b><p>Готов выполнить за 2 200 ₽</p></div><button class="btn primary" onclick="notify(\'Исполнитель выбран\')">Выбрать</button></div><div class="req"><div><b>Компания «Сервис»</b><p>Предложение: 2 500 ₽</p></div><button class="btn primary" onclick="notify(\'Исполнитель выбран\')">Выбрать</button></div></div>';if(t==='profile')p.innerHTML='<h3>Профиль</h3><p>Тип аккаунта: клиент</p><p>Город: Чебоксары</p><button class="btn soft">Редактировать</button>';if(t==='chat')p.innerHTML='<h3>Чаты</h3><p>После выбора исполнителя здесь появится переписка по заказу.</p>'}
+</script>
+</body></html>
+<script>
+const oldOpenModal=window.openModal;
+window.openModal=function(type){
+ if(type==='login'){document.getElementById('modal').classList.add('show');loginForm();return}
+ if(type==='register'){document.getElementById('modal').classList.add('show');registerForm();return}
+ oldOpenModal(type);
+ if(type==='request' && currentUser()){
+   document.querySelector('#mc .btn.primary')?.setAttribute('onclick','createOrderReal()');
+ }
+}
+window.addEventListener('load',()=>{refreshAccount();renderDashboard()});
+</script>
